@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8"
+	<meta charset="UTF-8">
 	<title>Scenery</title>
-	<canvas id="myCanvas" width="600px" height="300px"></canvas>
+	<canvas id="myCanvas" style="border:2px solid black" width="600px" height="300px"></canvas>
 	<script>
 		var canvas;
 		var ctx;
@@ -18,11 +18,52 @@
 		var WIDTH = 600;
 		var HEIGHT = 300;
 
+		function init() {
+			canvas = document.getElementById("myCanvas");
+			ctx = canvas.getContext("2d");
+			return setInterval(draw, 10);
+		}
+
+		function circle(x, y, r) {
+			ctx.beginPath();
+			ctx.arc(x, y, r, 0, Math.PI * 2);
+			ctx.fillStyle = "pink";
+			ctx.fill();
+		}
+		function clear() {
+			ctx.clearRect(0, 0, WIDTH, HEIGHT);
+		}
+
+		function draw() {
+			clear();
+			circle(x, y, 30);
+			circle(x2, y2, 30);
+
+			if(x + mx > WIDTH || x + mx < 0) {
+				mx = -mx;
+			}
+			if(y + my > HEIGHT || y + my < 0) {
+				my = -my;
+			}
+
+			if(x2 + mx2 > WIDTH || x2 + mx2 < 0) {
+				mx2 = -mx2;
+			}
+			if(y2 + my2 > HEIGHT || y2 + my2 < 0) {
+				my2 = -my2;
+			}
+			x += mx;
+			y += my;
+			x2 += mx2;
+			y2 += my2;
+
+		}
+
 	</script>
 
 	
 	</head>
-	<body onLoad="init9()">
+	<body onLoad="init()">
 
 	</body>
 	</html>
